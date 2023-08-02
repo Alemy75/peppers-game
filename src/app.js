@@ -4,6 +4,8 @@ import Helpers from "./helpers";
 import Game from "./components/Game";
 
 const initGame = () => {
+    const SCENE = document.querySelector(".container");
+
     // Создание игры, генерация массива ответов, генерация ответа
     const gameInstance = new Game();
 
@@ -13,18 +15,26 @@ const initGame = () => {
     };
 
     generateTask();
-    
-    // Инициализация сцены
-    const renderScene = () => {
-        const SCENE = document.querySelector(".container");
-        const color = Helpers.getRandomFromObject(COLORS)
 
-        SCENE.innerHTML = gameInstance.renderScene();
+    const renderTask = () => {
+        const color = Helpers.getRandomFromObject(COLORS);
         SCENE.style.background = color;
 
-        const TASK = document.querySelector(".task")
-        TASK.style.background = color
+        const PLAYGROUND = document.querySelector(".playground");
+        PLAYGROUND.innerHTML = gameInstance.renderTask();
 
+        const TASK = document.querySelector(".task");
+        TASK.style.background = color;
+
+        document.getElementById('level').textContent = gameInstance.level + '/9'
+        document.getElementById('score').textContent = gameInstance.score 
+        document.getElementById('bonus').textContent = 'x' + gameInstance.bonus
+    };
+
+    // Инициализация сцены
+    const renderScene = () => {
+        SCENE.innerHTML = gameInstance.renderScene();
+        renderTask();
     };
 
     renderScene();
@@ -46,13 +56,18 @@ const initGame = () => {
         const itemButtons = document.querySelectorAll(".item");
         itemButtons.forEach((item) => {
             item.addEventListener("click", (event) => {
-                if (event.target.textContent == gameInstance.answer) {
-                    gameInstance.setScore();
-                }
-                generateTask();
-                renderScene();
-                renderButtons();
-                addButtonClickHandlers();
+                const PLAYGROUND = document.querySelector(".playground")              
+                Helpers.swipeAnimation(PLAYGROUND)
+                setTimeout(() => {                  
+                    
+                    if (event.target.textContent == gameInstance.answer) {
+                        gameInstance.setScore();
+                    }
+                    generateTask();
+                    renderTask();
+                    renderButtons();
+                    addButtonClickHandlers();
+                }, 500)
             });
         });
     };
@@ -61,4 +76,4 @@ const initGame = () => {
 };
 
 initGame();
-
+Helpers.startTimer();

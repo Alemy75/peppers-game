@@ -25,10 +25,23 @@ const Helpers = {
 
             if (--timer < 0) {
                 clearInterval(interval);
-                alert('Игра окончена')
+                alert("Игра окончена");
             }
+        }, 1000);
+    },
+    swipeAnimation(element) {
+        element.classList.add("fade-out-left");
+        setTimeout(() => {
+            element.classList.remove("fade-out-left");
+            element.classList.add("fade-out-right");
+        }, 500);
+        setTimeout(() => {
+            element.classList.add("fade-in");
+        }, 501);
+        setTimeout(() => {
+            element.classList.remove("fade-out-right", "fade-in");
         }, 1000);
     },
 };
 
-export default Helpers
+export default Helpers;

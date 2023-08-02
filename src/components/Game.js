@@ -65,27 +65,33 @@ class Game {
                 </div>
                 <div class="statistics__item">
                     <span class="statistics__top">УРОВЕНЬ</span>
-                    <span class="statistics__bot">${this.level}/9</span>
+                    <span id="level" class="statistics__bot">${this.level}/9</span>
                 </div>
                 <div class="statistics__item">
                     <span class="statistics__top">ОЧКИ</span>
-                    <span class="statistics__bot">${this.score}</span>
+                    <span id="score" class="statistics__bot">${this.score}</span>
                 </div>
                 <div class="statistics__item">
                     <span class="statistics__top">БОНУС</span>
-                    <span class="statistics__bot">x${this.bonus}</span>
+                    <span id="bonus" class="statistics__bot">x${this.bonus}</span>
                 </div>
             </aside>
-            <section class="playground">
-                <div class="task">Найдите указанное число: <span>${this.answer}</span></div>
-                <div class="grid ${this.gridLevel}"></div>
-            </section>
+            <section class="playground"></section>
+        `;
+    }
+
+    renderTask() {
+        return `
+            <div class="task">Найдите указанное число: <span>${this.answer}</span></div>
+            <div class="grid ${this.gridLevel}"></div>
         `;
     }
 
     renderItem(item) {
         return `
-            <button class="item ${this.level > 2 && Helpers.getRandomFromObject(ANIMATIONS)}" id=${item} style="background: ${Helpers.getRandomFromObject(
+            <button class="item ${
+                this.level > 2 && Helpers.getRandomFromObject(ANIMATIONS)
+            }" id=${item} style="background: ${Helpers.getRandomFromObject(
                 COLORS
             )};">
                 <span>${item}</span> 
