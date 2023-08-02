@@ -1,0 +1,210 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 16;
+    font-weight: 600;
+    color: white;
+}
+
+.container {
+    width: 632px;
+    height: 528px;
+    position: relative;
+    border-radius: 20px;
+}
+
+.statistics {
+    width: calc(445px - 60px);
+    padding: 0 30px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #ffffff70;
+    height: 32px;
+    display: flex;
+    justify-content: space-between;
+    color: #333;
+}
+
+.statistics__item {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.statistics__top {
+    font-size: 7px;
+    font-weight: 600;
+}
+
+.statistics__bot {
+    font-weight: 900;
+    font-size: 12px;
+}
+
+.playground {
+    width: calc(100% - 140px);
+    padding: 60px 70px;
+    height: 400px;
+}
+
+.task {
+    margin-bottom: 30px;
+    padding: 30px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    box-shadow: 0 7px 35px 0 rgba(0,0,0,.3);
+    font-size: 1.15rem;
+    font-family: "Open Sans", sans-serif;
+}
+
+.task span {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 3rem;
+    line-height: 1;
+}
+
+.grid {
+    height: 200px;
+    display: grid;
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+}
+
+.grid_6 {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    font-size: 2rem;
+}
+
+.grid_12 {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    font-size: 1.75rem;
+    height: 280px;
+}
+
+.grid_16 {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    font-size: 1.5rem;
+    height: 280px;
+}
+
+.grid_25 {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    font-size: 1.3rem;
+    height: 280px;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
+
+.item {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    transition: all 0.1s ease;
+}
+
+.item:hover {
+    -webkit-box-shadow: 0px 0px 16px 1px rgba(34, 60, 80, 0.36);
+    -moz-box-shadow: 0px 0px 16px 1px rgba(34, 60, 80, 0.36);
+    box-shadow: 0px 0px 16px 1px rgba(34, 60, 80, 0.36);
+    cursor: pointer;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+    25% {
+        transform: rotate(15deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    75% {
+        transform: rotate(-15deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.rotate-animation span {
+    animation: rotate 0.75s linear infinite;
+}
+
+@keyframes scale {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.1);
+    }
+    50% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.scale-animation {
+    animation: scale 0.5s linear infinite;
+}
+
+@keyframes blur {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.blur-animation {
+    animation: blur 1s linear infinite;
+}
+
+@keyframes shadow {
+    0% {
+        -webkit-box-shadow: 0px 6px 22px -15px rgba(34, 60, 80, 0.36);
+        -moz-box-shadow: 0px 6px 22px -15px rgba(34, 60, 80, 0.36);
+        box-shadow: 0px 6px 22px -15px rgba(34, 60, 80, 0.36);
+    }
+    50% {
+        -webkit-box-shadow: 0px 42px 71px -15px rgba(34, 60, 80, 0.36);
+        -moz-box-shadow: 0px 42px 71px -15px rgba(34, 60, 80, 0.36);
+        box-shadow: 0px 42px 71px -15px rgba(34, 60, 80, 0.36);
+    }
+    100% {
+        -webkit-box-shadow: 0px 6px 22px -15px rgba(34, 60, 80, 0.36);
+        -moz-box-shadow: 0px 6px 22px -15px rgba(34, 60, 80, 0.36);
+        box-shadow: 0px 6px 22px -15px rgba(34, 60, 80, 0.36);
+    }
+}
+.shadow-animation {
+    animation: shadow 1.5s linear infinite;
+    
+}
