@@ -11,34 +11,33 @@ const Helpers = {
         });
         return newArray;
     },
-    startTimer() {
+    startTimer(obj) {
         let timer = 60;
         const timerDisplay = document.getElementById("timer");
 
         const interval = setInterval(() => {
             const minutes = Math.floor(timer / 60);
             let seconds = timer % 60;
-
             seconds = seconds < 10 ? "0" + seconds : seconds;
 
             timerDisplay.textContent = minutes + ":" + seconds;
 
             if (--timer < 0) {
                 clearInterval(interval);
-                alert("Игра окончена");
+                obj.isFinished = true
             }
         }, 1000);
     },
     swipeAnimation(element) {
         element.classList.add("fade-out-left");
-        setTimeout(() => {
+        const start =setTimeout(() => {
             element.classList.remove("fade-out-left");
             element.classList.add("fade-out-right");
         }, 500);
-        setTimeout(() => {
+        const change = setTimeout(() => {
             element.classList.add("fade-in");
         }, 501);
-        setTimeout(() => {
+        const end = setTimeout(() => {
             element.classList.remove("fade-out-right", "fade-in");
         }, 1000);
     },

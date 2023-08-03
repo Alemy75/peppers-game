@@ -10,6 +10,9 @@ class Game {
         this.itemsArray = [];
         this.answer = null;
         this.gridLevel = "grid_6";
+        this.isFinished = false
+        this.rigthCount = 0
+        this.answerCount = 0
     }
 
     generateItemsArray() {
@@ -56,6 +59,10 @@ class Game {
         }
     }
 
+    startTimer() {
+        Helpers.startTimer(this)
+    }
+
     renderScene() {
         return `
             <aside class="statistics">
@@ -97,6 +104,27 @@ class Game {
                 <span>${item}</span> 
             </button>
         `;
+    }
+
+    renderResults() {
+        return `
+        <section class="results">
+            <div class="results__header">Ваши результаты</div>
+            <div class="results__items">
+                <div class="results__items_left">
+                    <span>Текущий результат: </span>
+                    <span>Верных ответов: </span>
+                    <span>Точность ответов: </span>
+                </div>
+                <div class="results__items_right">
+                    <span>${this.score}</span>
+                    <span>${this.rigthCount}/${this.answerCount}</span>
+                    <span>${(this.rigthCount / this.answerCount * 100).toFixed(1)}%</span>
+                </div>
+                <button class="results__button">НАЧАТЬ ЗАНОВО</button>
+            </div>
+        </section>
+        `
     }
 }
 
