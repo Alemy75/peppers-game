@@ -43,11 +43,18 @@ const initGame = () => {
         document.getElementById("level").textContent =
             gameInstance.level + "/9";
         document.getElementById("score").textContent = gameInstance.score;
-        document.getElementById("bonus").textContent =
-            [...new Array(gameInstance.bonus)].map(() => "+").join("") +
-            [...new Array(5 - gameInstance.bonus)].map(() => "-").join("") +
+        document.getElementById("bonus").innerHTML =
+            [...new Array(gameInstance.bonus)].map(() => gameInstance.renderDot(1)).join("") +
+            [...new Array(5 - gameInstance.bonus)].map(() => gameInstance.renderDot(0)).join("") +
             " x" +
             gameInstance.bonus;
+    };
+
+    const rerenderLevel = () => {
+        generateTask();
+        renderTask();
+        renderButtons();
+        addButtonClickHandlers();
     };
 
     const renderPreview = () => {
@@ -75,11 +82,15 @@ const initGame = () => {
         const handleClick = () => {
             SCENE.style.opacity = 0;
             setTimeout(() => {
-                renderScene();
-                generateTask();
-                renderTask();
-                renderButtons();
-                addButtonClickHandlers();
+                SCENE.innerHTML = gameInstance.renderCountdown();
+                Helpers.startCountdown(() => {
+                    SCENE.style.opacity = 0;
+                    setTimeout(() => {
+                        renderScene();
+                        rerenderLevel();
+                        SCENE.style.opacity = 1;
+                    }, 500);
+                });
                 SCENE.style.opacity = 1;
             }, 500);
 
@@ -119,10 +130,7 @@ const initGame = () => {
                     answerImg(wrongImg);
                 }
                 let renderTimer = setTimeout(() => {
-                    generateTask();
-                    renderTask();
-                    renderButtons();
-                    addButtonClickHandlers();
+                    rerenderLevel();
                     if (document.getElementById("answer-img")) {
                         SCENE.removeChild(
                             document.getElementById("answer-img")

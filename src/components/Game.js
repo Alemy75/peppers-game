@@ -126,6 +126,16 @@ class Game {
         </section>
         `
     }
+
+    renderCountdown() {
+        return `
+            <span id="countdown" class="countdown">3</span>
+        `
+    }
+
+    renderDot(value) {
+        return value == 0 ? `<span class="dot"></span>` : `<span class="dot dot_filled"></span>`
+    }
 }
 
 export default Game;

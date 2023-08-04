@@ -54,6 +54,13 @@ body {
 .statistics__bot {
     font-weight: 900;
     font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.statistics__bot:not(:last-child) {
+    margin-left: 2px;
 }
 
 .counters {
@@ -157,6 +164,24 @@ body {
     height: 103px;
 }
 
+.countdown {
+    font-size: 3.15rem;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    border: 7px solid white;
+    color: white;
+    line-height: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
 .item {
     all: unset;
     display: flex;
@@ -198,9 +223,19 @@ body {
     animation: rotate 0.5s linear infinite, blur 1s linear infinite;
 }
 
+.dot {
+    display: block;
+    width: 4px;
+    height: 4px;
+    margin-right: 1px;
+    border: 1px solid #333;
+    border-radius: 10px;
+    margin-top: 2px
+}
 
-
-
+.dot_filled {
+    background-color: #333;
+}
 
 .results {
     width: calc(100% - 100px);
