@@ -74,11 +74,12 @@ const initGame = () => {
     const renderPreview = () => {
         // Создания экземпляра уровня
         SCENE.innerHTML = gameInstance.renderScene();
+        gameInstance.itemsArray = [76, 32, 158, 34, 665, 31]
+        gameInstance.answer = 76
         renderTask();
         renderButtons();
         const buttons = document.querySelectorAll(".item");
-        console.log(buttons);
-
+        
         buttons.forEach((button) => {
             button.classList.remove("item");
             button.classList.add("item_nohover");
@@ -113,7 +114,9 @@ const initGame = () => {
 
             SCENE.removeEventListener("click", handleClick);
         };
-
+        const TASK = document.querySelector('.task')
+        TASK.style.background = COLORS.BLUE
+        SCENE.style.background = COLORS.BLUE
         SCENE.addEventListener("click", handleClick);
     };
 
