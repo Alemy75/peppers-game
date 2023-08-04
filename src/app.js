@@ -6,12 +6,27 @@ import rightImg from "./assets/right.png";
 import wrongImg from "./assets/wrong.png";
 import pointImg from "./assets/point.png";
 
+// Функция запуска игры
 const initGame = () => {
+
+    // Функция создания сцены
+    const createScene = () => {
+        const gameScene = document.createElement("div");
+        gameScene.classList.add("container");
+        gameScene.classList.add("shadow-animation");
+        const body = document.querySelector("body");
+        body.innerHTML = ''
+        body.appendChild(gameScene);
+    };
+
+    createScene();
+
     const SCENE = document.querySelector(".container");
 
-    // Создание игры, генерация массива ответов, генерация ответа
+    // Создание игры
     const gameInstance = new Game();
 
+    // Функция генерации массива ответов, генерация ответа
     const generateTask = () => {
         gameInstance.generateItemsArray();
         gameInstance.setAnswer();
@@ -30,6 +45,7 @@ const initGame = () => {
         itemsGrid.innerHTML = html;
     };
 
+    // Отрисовка задания
     const renderTask = () => {
         const color = Helpers.getRandomFromObject(COLORS);
         SCENE.style.background = color;
@@ -43,13 +59,10 @@ const initGame = () => {
         document.getElementById("level").textContent =
             gameInstance.level + "/9";
         document.getElementById("score").textContent = gameInstance.score;
-        document.getElementById("bonus").innerHTML =
-            [...new Array(gameInstance.bonus)].map(() => gameInstance.renderDot(1)).join("") +
-            [...new Array(5 - gameInstance.bonus)].map(() => gameInstance.renderDot(0)).join("") +
-            " x" +
-            gameInstance.bonus;
+        document.getElementById("bonus").innerHTML = gameInstance.renderDot();
     };
 
+    // Перерисовка уровня
     const rerenderLevel = () => {
         generateTask();
         renderTask();
@@ -57,7 +70,9 @@ const initGame = () => {
         addButtonClickHandlers();
     };
 
+    // Отрисовка начального экрана
     const renderPreview = () => {
+        // Создания экземпляра уровня
         SCENE.innerHTML = gameInstance.renderScene();
         renderTask();
         renderButtons();
@@ -69,6 +84,7 @@ const initGame = () => {
             button.classList.add("item_nohover");
         });
 
+        // Генерация подписи и картинки
         let tutorialElement = document.createElement("div");
         tutorialElement.classList.add("tutorial");
         tutorialElement.textContent = "Нажмите на экран, чтобы продолжить";
@@ -79,6 +95,7 @@ const initGame = () => {
         pointElement.classList.add("point-img");
         SCENE.appendChild(pointElement);
 
+        // Добавление обработчика клика на экран
         const handleClick = () => {
             SCENE.style.opacity = 0;
             setTimeout(() => {
@@ -122,6 +139,8 @@ const initGame = () => {
                 const PLAYGROUND = document.querySelector(".playground");
                 Helpers.swipeAnimation(PLAYGROUND);
                 gameInstance.answerCount++;
+
+                // Проверка правильности ответа
                 if (event.target.textContent == gameInstance.answer) {
                     gameInstance.setScore();
                     gameInstance.rigthCount++;
@@ -129,6 +148,8 @@ const initGame = () => {
                 } else {
                     answerImg(wrongImg);
                 }
+
+                // Отрисовка картинки ответа
                 let renderTimer = setTimeout(() => {
                     rerenderLevel();
                     if (document.getElementById("answer-img")) {
@@ -138,6 +159,8 @@ const initGame = () => {
                     }
                     clearTimeout(renderTimer);
                 }, 500);
+
+                // Отрисовка результатов
                 if (gameInstance.isFinished) {
                     SCENE.style.opacity = 0;
                     setTimeout(() => {
@@ -149,6 +172,7 @@ const initGame = () => {
         });
     };
 
+    // Функция отрисовки картинки ответа
     const answerImg = (src) => {
         let img = document.createElement("img");
         img.src = src;
@@ -157,6 +181,7 @@ const initGame = () => {
         SCENE.appendChild(img);
     };
 
+    // Функция открисовки результатов
     const renderFinal = () => {
         SCENE.innerHTML = gameInstance.renderResults();
         SCENE.style.background = "white";

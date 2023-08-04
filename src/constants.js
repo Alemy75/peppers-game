@@ -1,3 +1,4 @@
+// Цвета
 export const COLORS = {
     ORANGE: 'rgb(242, 142, 55)',
     BLUE: 'rgb(77, 184, 236)',
@@ -6,8 +7,10 @@ export const COLORS = {
     GREEN: 'rgb(148, 201, 77)'
 }
 
+// Шаг счета
 export const SCORE_STEP = 42
 
+// Анимации
 export const ANIMATIONS = {
     rotate: 'rotate-animation',
     scale: 'scale-animation',

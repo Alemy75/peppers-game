@@ -1,10 +1,12 @@
 const Helpers = {
+    // Получаю ответ из массива чисел
     getRandomFromObject(object) {
         let array = Object.entries(object).map(([key, value]) => value);
         const randomIndex = Math.floor(Math.random() * array.length);
         return array[randomIndex];
     },
 
+    // Генерирую массив случайных чисел
     generateNumbersArray(count) {
         const newArray = Array.from({ length: count }, () => {
             if (count == 6) {
@@ -23,6 +25,7 @@ const Helpers = {
         return newArray;
     },
 
+    // Таймер игры
     startTimer(obj) {
         let timer = 60;
         const timerDisplay = document.getElementById("timer");
@@ -40,6 +43,8 @@ const Helpers = {
             }
         }, 1000);
     },
+
+    // Отсчет до старта
     startCountdown(func) {
         let count = 3;
         const countdownElement = document.getElementById("countdown");
@@ -56,6 +61,8 @@ const Helpers = {
             }
         }, 1000);
     },
+
+    // Анимация свайпа в лево
     swipeAnimation(element) {
         element.classList.add("fade-out-left");
         const start = setTimeout(() => {
